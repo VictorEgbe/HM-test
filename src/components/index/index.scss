@@ -1,3 +1,122 @@
 .index {
-  color: green;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(24, 9, 121, 0.5691526610644257) 49%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  .form {
+    padding: 30px;
+    -webkit-box-shadow: 1px 1px 32px -14px rgba(196, 196, 196, 0.91);
+    box-shadow: 1px 1px 32px -14px rgba(196, 196, 196, 0.91);
+    border-radius: 10px;
+    background-color: white;
+    max-height: 50%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    legend {
+      text-align: center;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: rgba(24, 9, 121, 0.5691526610644257);
+      font-size: 20px;
+    }
+
+    .inputItem {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      label {
+        flex: 2;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: rgba(24, 9, 121, 0.5691526610644257);
+      }
+      input {
+        flex: 15;
+        padding: 8px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        border: 1px solid gray;
+        color: gray;
+        word-spacing: 10px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+    }
+
+    .selectItem {
+      display: flex;
+      align-items: center;
+
+      label {
+        flex: 2;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: rgba(24, 9, 121, 0.5691526610644257);
+      }
+      select {
+        flex: 15;
+        padding: 8px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        border: 1px solid gray;
+        word-spacing: 10px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        height: 190px;
+      }
+    }
+
+    .others {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        width: max-content;
+        border: none;
+        outline: none;
+        background-color: teal;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 30px;
+        transition: all 0.4s ease-in;
+
+        &:hover {
+          background-color: rgb(1, 92, 92);
+        }
+      }
+
+      .terms {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
 }

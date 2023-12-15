@@ -1,7 +1,7 @@
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Index from "./companents/index/Index";
-import Details from "./companents/details/Details";
+import Index from "./components/index/Index";
+import Details from "./components/details/Details";
 
 const router = createBrowserRouter([
   {
