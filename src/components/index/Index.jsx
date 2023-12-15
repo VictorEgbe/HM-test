@@ -1,19 +1,65 @@
 import "./index.scss";
+import { useState } from "react";
+
 const Index = () => {
+  const [userName, setUserName] = useState("");
+  const [sectors, setSectors] = useState([]);
+  const [agree, setAgree] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      user_name: userName,
+      sectors,
+      agree,
+    };
+
+    console.log(data);
+  };
+
+  const handleSelectChange = (event) => {
+    const options = Array.from(event.target.options)
+      .filter((option) => option.selected)
+      .map((option) => option.value);
+    setSectors(options);
+  };
+
+  const handleCheckboxChange = (event) => {
+    if (event.target.checked) {
+      setAgree(true);
+    } else {
+      setAgree(false);
+    }
+  };
+
   return (
     <div className="index">
-      <form className="form">
+      <form onSubmit={handleSubmit} className="form">
         <legend>
           Please enter your name and pick the Sectors you are currently involved
           in.
         </legend>
         <div className="inputItem">
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="name" className="name" />
+          <input
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+            type="text"
+            id="name"
+            placeholder="name"
+            className="name"
+          />
         </div>
         <div className="selectItem">
           <label htmlFor="sectors">Sectors</label>
-          <select name="sectors" id="sectors" multiple>
+          <select
+            onChange={handleSelectChange}
+            name="sectors"
+            id="sectors"
+            multiple
+            required
+          >
             <optgroup label="Manufacturing">
               <option>Construction and Materials</option>
               <option>Electronics and Optics</option>
@@ -26,7 +72,12 @@ const Index = () => {
         </div>
         <div className="others">
           <div className="terms">
-            <input type="checkbox" id="agreeTerms" name="agreeTerms" />
+            <input
+              onChange={handleCheckboxChange}
+              type="checkbox"
+              id="agreeTerms"
+              name="agreeTerms"
+            />
             <label htmlFor="agreeTerms">Agree to terms</label>
           </div>
           <button type="submit">save</button>
