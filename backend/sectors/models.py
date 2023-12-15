@@ -22,10 +22,10 @@ class SectorHeading(models.Model):
 
 class Sector(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    sector_name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
     heading = models.ForeignKey(SectorHeading, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.sector_name
+        return self.name
