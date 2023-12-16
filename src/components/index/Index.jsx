@@ -2,6 +2,7 @@ import "./index.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Edit from "../Edit";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Index = () => {
   const [agree, setAgree] = useState(null);
   const [storedSectors, setStoredSectors] = useState([]);
   const URL = "http://localhost:8000/sectors/";
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     axios
@@ -29,7 +31,7 @@ const Index = () => {
     axios
       .post(URL, data)
       .then((res) => {
-        localStorage.setItem("userName", res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/details");
       })
       .catch((err) => console.log(err));
@@ -49,6 +51,10 @@ const Index = () => {
       setAgree(false);
     }
   };
+
+  if (user) {
+    return <Edit storedSectors={storedSectors} user={user} />;
+  }
 
   return (
     <div className="index">

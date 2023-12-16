@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Sector, SectorHeading, User
-from .serializers import CreateSectorSerializer, GetUserSerializer
+from .serializers import CreateSectorSerializer, EditSerializer
 
 
 @api_view(http_method_names=('GET', 'POST'))
@@ -35,15 +35,16 @@ def index(request):
                 db_sector = Sector.objects.get(name=sector_name)
                 user.sectors.add(db_sector)
             user.save()
-            return Response(user.name, status=status.HTTP_201_CREATED)
+
+            return Response({'userName': user.name}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(http_method_names=('GET', 'PUT'))
 def user_sectors(request, username):
+    user = User.objects.get(name=username)
     if request.method == 'GET':
-        user = User.objects.get(name=username)
         sectors = user.sectors.all()
         headings_names = list(set([s.heading.name for s in sectors]))
         data = []
@@ -59,4 +60,20 @@ def user_sectors(request, username):
 
         return Response(data, status=status.HTTP_200_OK)
 
-    return Response(status=status.HTTP_201_CREATED)
+    if request.method == 'PUT':
+        serializer = EditSerializer(data=request.data)
+        if serializer.is_valid():
+            new_username = serializer.data.get('user_name')
+            sectors = serializer.data.get('sectors')
+            user.name = new_username
+            user.sectors.clear()
+
+            for sector_name in sectors:
+                db_sector = Sector.objects.get(name=sector_name)
+                user.sectors.add(db_sector)
+
+            user.save()
+
+            return Response({'userName': user.name}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

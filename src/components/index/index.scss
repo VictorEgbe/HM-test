@@ -88,7 +88,8 @@
       align-items: center;
       justify-content: space-between;
 
-      button {
+      button,
+      .link {
         width: max-content;
         border: none;
         outline: none;
@@ -112,6 +113,11 @@
         &:disabled {
           cursor: not-allowed;
         }
+      }
+
+      .link {
+        background-color: green;
+        text-decoration: none;
       }
 
       .terms {

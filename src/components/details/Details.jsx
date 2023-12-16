@@ -1,11 +1,16 @@
 import "./details.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Details = () => {
+  const navigate = useNavigate();
   const [userSectors, setUserSectors] = useState([]);
-  const userName = localStorage.getItem("userName");
+  const userName = JSON.parse(localStorage.getItem("user")).userName;
+
+  if (!userName) {
+    navigate("/");
+  }
 
   useEffect(() => {
     axios
@@ -19,7 +24,7 @@ const Details = () => {
     <div className="details">
       <div className="container">
         <div className="top">
-          <h1>John Doe</h1>
+          <h1>{userName}</h1>
           <Link className="link" to={"/"}>
             Edit
           </Link>
