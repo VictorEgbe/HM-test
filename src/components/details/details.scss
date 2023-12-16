@@ -11,4 +11,80 @@
     rgba(24, 9, 121, 0.5691526610644257) 49%,
     rgba(0, 212, 255, 1) 100%
   );
+
+  .container {
+    padding: 30px;
+    -webkit-box-shadow: 1px 1px 32px -14px rgba(196, 196, 196, 0.91);
+    box-shadow: 1px 1px 32px -14px rgba(196, 196, 196, 0.91);
+    border-radius: 10px;
+    background-color: white;
+    min-height: 50%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .link {
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        background-color: teal;
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      h1 {
+        color: rgba(24, 9, 121, 0.5691526610644257);
+        font-size: 30px;
+        text-transform: capitalize;
+        font-weight: bold;
+      }
+    }
+
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h1 {
+        font-size: 14px;
+        font-weight: 500;
+        color: gray;
+      }
+      .sectors {
+        display: flex;
+        flex-wrap: wrap;
+
+        section {
+          flex: 1;
+
+          h2 {
+            color: grey;
+            font-size: 18px;
+            text-transform: uppercase;
+          }
+
+          ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li {
+              font-size: 18px;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

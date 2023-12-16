@@ -1,8 +1,10 @@
 import "./index.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [sectors, setSectors] = useState([]);
   const [agree, setAgree] = useState(null);
@@ -26,7 +28,10 @@ const Index = () => {
 
     axios
       .post(URL, data)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        localStorage.setItem("userName", res.data);
+        navigate("/details");
+      })
       .catch((err) => console.log(err));
   };
 
