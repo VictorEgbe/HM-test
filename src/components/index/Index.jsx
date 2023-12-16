@@ -7,10 +7,11 @@ const Index = () => {
   const [sectors, setSectors] = useState([]);
   const [agree, setAgree] = useState(null);
   const [storedSectors, setStoredSectors] = useState([]);
+  const URL = "http://localhost:8000/sectors/";
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/sectors")
+      .get(URL)
       .then((res) => setStoredSectors(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -23,7 +24,10 @@ const Index = () => {
       agree,
     };
 
-    console.log(data);
+    axios
+      .post(URL, data)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
 
   const handleSelectChange = (event) => {

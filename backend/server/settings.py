@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'sectors.apps.SectorsConfig'
 ]
 
+# APPEND_SLASH = False
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
