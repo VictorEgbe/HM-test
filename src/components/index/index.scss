@@ -108,6 +108,10 @@
         &:hover {
           background-color: rgb(1, 92, 92);
         }
+
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
 
       .terms {

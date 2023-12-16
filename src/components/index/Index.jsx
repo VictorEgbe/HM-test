@@ -1,10 +1,19 @@
 import "./index.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Index = () => {
   const [userName, setUserName] = useState("");
   const [sectors, setSectors] = useState([]);
   const [agree, setAgree] = useState(null);
+  const [storedSectors, setStoredSectors] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/sectors")
+      .then((res) => setStoredSectors(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,14 +69,13 @@ const Index = () => {
             multiple
             required
           >
-            <optgroup label="Manufacturing">
-              <option>Construction and Materials</option>
-              <option>Electronics and Optics</option>
-            </optgroup>
-            <optgroup label="Food and Beverage">
-              <option>Bakery and confectionary products</option>
-              <option>Beverages</option>
-            </optgroup>
+            {storedSectors?.map((storedSector) => (
+              <optgroup label={storedSector.name} key={storedSector.id}>
+                {storedSector.sectors.map((s) => (
+                  <option key={s.id}>{s.name}</option>
+                ))}
+              </optgroup>
+            ))}
           </select>
         </div>
         <div className="others">
@@ -77,10 +85,16 @@ const Index = () => {
               type="checkbox"
               id="agreeTerms"
               name="agreeTerms"
+              required
             />
             <label htmlFor="agreeTerms">Agree to terms</label>
           </div>
-          <button type="submit">save</button>
+          <button
+            type="submit"
+            disabled={!agree || !userName || sectors.length == 0}
+          >
+            save
+          </button>
         </div>
       </form>
     </div>
