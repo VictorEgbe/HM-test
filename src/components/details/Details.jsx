@@ -7,6 +7,7 @@ const Details = () => {
   const navigate = useNavigate();
   const [userSectors, setUserSectors] = useState([]);
   const userName = JSON.parse(localStorage.getItem("user")).userName;
+  const URL = "http://techefreelance.pythonanywhere.com/sectors/";
 
   if (!userName) {
     navigate("/");
@@ -14,7 +15,8 @@ const Details = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/sectors/${userName}`)
+      // .get(`http://localhost:8000/sectors/${userName}`)
+      .get(`${URL}/${userName}`)
       .then((res) => setUserSectors(res.data))
 
       .catch((err) => console.log(err));

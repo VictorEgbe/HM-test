@@ -10,7 +10,8 @@ const Index = () => {
   const [sectors, setSectors] = useState([]);
   const [agree, setAgree] = useState(null);
   const [storedSectors, setStoredSectors] = useState([]);
-  const URL = "http://localhost:8000/sectors/";
+  // const URL = "http://localhost:8000/sectors/";
+  const URL = "http://techefreelance.pythonanywhere.com/sectors/";
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {

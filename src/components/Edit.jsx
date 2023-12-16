@@ -8,6 +8,7 @@ const Edit = ({ storedSectors, user }) => {
   const [sectors, setSectors] = useState([]);
   const [userName, setUserName] = useState(user.userName);
   const navigate = useNavigate();
+  const URL = "http://techefreelance.pythonanywhere.com/sectors/";
 
   const handleSelectChange = (event) => {
     const options = Array.from(event.target.options)
@@ -24,7 +25,8 @@ const Edit = ({ storedSectors, user }) => {
     };
 
     axios
-      .put(`http://localhost:8000/sectors/${user.userName}`, data)
+      // .put(`http://localhost:8000/sectors/${user.userName}`, data)
+      .put(`${URL}/${user.userName}`, data)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/details");
